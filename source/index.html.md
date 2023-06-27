@@ -41,8 +41,8 @@ includes:
   - Tags
   - Dashboards
   - Topology
-  - Tab4
-  - Cost
+  #- Tab4
+  #- Cost
   
 search: true
 ---
