@@ -28,7 +28,7 @@ Use this API to get All Alert Configurations and their respective ID's
 
 <aside class="success">
 A Pro Tip:</br>
-Use this API to retrieve the alert ID's that are used to delete, edit, pause/resume alerts.
+Use this API to retrieve the alert IDs that are used to delete, edit, pause/resume alerts.
 </aside>
 
 #### Response Fields
@@ -456,7 +456,10 @@ Argument | Type | Description
 ---------|------|------------
 id | String | Alert id to edit.
 
-Notice that you will in the *body* of this message the updated definition of the alert. The definition is the same as the one used in the alert creation API. 
+<aside class="notice">
+Pro Tip Reminder:</br>
+Get the alert configuration by calling the GET alerts API, and then extract the "configuration": {} section. Use it as the basis to update and create alerts.
+</aside>
 
 **Response**
 
