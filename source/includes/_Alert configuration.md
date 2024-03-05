@@ -42,10 +42,7 @@ Use this API to retrieve the alert IDs that are used to delete, edit, pause/resu
     "meta": {
       "createdTime": 1513760272,
       "modifiedTime": 1513760272,
-      "createdBy": "string",
       "modifiedBy": "string",
-      "creatorId": "20262fb3-00ba-412c-a515-aec74c4824cd",
-      "modifierId": "20262fb3-00ba-412c-a515-aec74c4824cd",
       "associatedDashboardTile": {
         "dashboardId": "20262fb3-00ba-412c-a515-aec74c4824cd",
         "tileId": "30262fb3-00ba-412c-a515-aec74c4824cd"
@@ -65,7 +62,7 @@ Use this API to retrieve the alert IDs that are used to delete, edit, pause/resu
         "anomaly"
       ],
       "title": "Jetty servers availability",
-      "owner": "user@domain.com",
+      "owner": "string",
       "description": "This alerts monitors the availablity of the jetty servers",
       "search": {
         "type": "expression",
