@@ -334,82 +334,278 @@ Use this API to get a single alert configuration
 
 ```json
 {
-    "id": "864fe6b3-32db-46f3-a7bf-bd1ca2422ef6",
+    "id": "1f11979f-de3e-4d6b-81c8-2f2f4beb1111",
     "meta": {
-        "createdTime": 1617569462,
-        "modifiedTime": 1627973755,
+        "createdTime": 1663145355,
+        "modifiedTime": 1722166145,
         "owner": "andt-group",
-        "modifiedBy": "coyote@acme.corp",
-        "ownerId": "5ffc6662c4b329000e9d1066",
-        "modifierId": "5ffc6744c4b329000e9d1067",
+        "modifiedBy": "test@anodot.com",
+        "ownerId": "5e16d1c31edb9e000d2b1111",
+        "modifierId": "58e5f6b3ba01b264935d1111",
         "associatedDashboardTile": null
     },
     "configuration": {
         "labels": [
             {
-                "name": "documentation"
+                "name": "Ella"
             },
             {
-                "name": "API"
+                "name": "two"
             }
         ],
-        "timeScale": "1h",
+        "timeScale": "1d",
         "type": [
-            "anomaly"
+            "anomaly",
+            "noData"
         ],
-        "title": "Anomaly on Pageviews by {{Page_Title}} from Slate API views",
-        "description": "",
+        "title": "Demo 100",
+        "description": "Test Description, trigger time: {{trigger_time}}",
         "severity": "high",
         "conditions": [
             {
                 "type": "direction",
-                "id": "3e04-072646de894d",
-                "direction": "both"
-            },
-            {
-                "type": "duration",
-                "id": "1254-7113a0ad468e",
-                "duration": 7200
+                "id": "bb3f-bd512a5561bd",
+                "direction": "down"
             },
             {
                 "type": "significance",
-                "id": "3d64-739d8d5b2b4c",
-                "significance": 0.75
+                "id": "5d61-0191fe6f3e10",
+                "significance": 0.35000000000000003
             },
             {
                 "type": "delta",
-                "id": "b9e4-5a5ba2e13a9d",
-                "absolute": 1.0135593220338988,
+                "id": "1aad-323c29a3d598",
+                "absolute": 45.50929567122151,
                 "percentage": 10,
                 "deltaDuration": {
                     "enabled": false,
-                    "rollup": "long",
-                    "minDuration": 7200
+                    "rollup": "longlong",
+                    "minDuration": 86400
                 },
                 "enableAutoTuning": true
             },
             {
+                "type": "duration",
+                "id": "77e3-a6e0038dfccd",
+                "duration": 86400
+            },
+            {
+                "type": "influencing",
+                "id": "ebfb-7dc2e167854c",
+                "matchingProperties": [
+                    "lineItem_ProductCode",
+                    "lineItem_LineItemType"
+                ],
+                "rollup": "longlong",
+                "useAnomalyValues": false,
+                "subConditions": [
+                    {
+                        "type": "ABOVE",
+                        "upperBound": "UPPER",
+                        "maxValue": 100
+                    }
+                ],
+                "expressionTreeModel": {
+                    "title": null,
+                    "id": "dab8-88c484d761db",
+                    "name": null,
+                    "displayOnly": true,
+                    "mtype": "ALERT",
+                    "namingSchema": "COMPOSITE_V2",
+                    "expressionTree": {
+                        "root": {
+                            "type": "function",
+                            "id": "da65-2f8fed1116c3",
+                            "children": [
+                                {
+                                    "type": "metric",
+                                    "id": "7a3b-c9f6a7b95934",
+                                    "children": [],
+                                    "searchObject": {
+                                        "q": null,
+                                        "expression": [
+                                            {
+                                                "type": "property",
+                                                "key": "what",
+                                                "value": "lineItem_BlendedCost",
+                                                "exact": true
+                                            }
+                                        ],
+                                        "ids": null,
+                                        "originSourceIds": null
+                                    },
+                                    "leaf": true
+                                }
+                            ],
+                            "function": "groupBy",
+                            "parameters": [
+                                {
+                                    "name": "Aggregation",
+                                    "value": "Sum"
+                                },
+                                {
+                                    "name": "Group By",
+                                    "value": "{\"properties\":[\"lineItem_ProductCode\",\"lineItem_LineItemType\"]}"
+                                }
+                            ],
+                            "leaf": false
+                        }
+                    },
+                    "alias": null,
+                    "filter": null,
+                    "scalarTransforms": null,
+                    "calculationDelay": null,
+                    "originId": null,
+                    "owner": null,
+                    "ownerId": null,
+                    "excludeComposites": true,
+                    "includeCubes": null,
+                    "startBucketMode": false,
+                    "description": null,
+                    "watermarkBased": null
+                },
+                "enableAutoTuning": false,
+                "failOnAbsence": true
+            },
+            {
                 "type": "volume",
                 "id": null,
-                "value": 8,
-                "rollup": "longlong",
+                "value": 3090.966857482553,
+                "rollup": "weekly",
                 "bound": "LOWER",
                 "numLastPoints": 1,
                 "enableAutoTuning": true,
-                "enabled": true
+                "enabled": false
             }
         ],
-        "channels": [
-            "c5ab76da-8c30-4cee-9b70-389a3176f3cf"
-        ],
+        "channels": [],
         "subscribers": [
-            "roadrunner@acme.corp"
+            "test@anodot.com",
+            "test1@anodot.com"
         ],
+        "notifyOnlyOpen": false,
+        "noDataAlert": true,
+        "noDataDuration": 7200,
+        "expressionTreeModel": {
+            "title": "Demo_100_lineItem_BlendedCost",
+            "id": "61b85eab-f91e-4c42-95dc-4255795ec8b3",
+            "name": {
+                "prefix": "what=lineItem_BlendedCost.func=groupBy",
+                "auto": false
+            },
+            "displayOnly": false,
+            "mtype": "ALERT",
+            "namingSchema": "COMPOSITE_V2",
+            "expressionTree": {
+                "root": {
+                    "type": "function",
+                    "id": "8a29-985a4d878a50",
+                    "children": [
+                        {
+                            "type": "metric",
+                            "id": "5342-99389c314ca5",
+                            "children": [],
+                            "searchObject": {
+                                "q": null,
+                                "expression": [
+                                    {
+                                        "type": "origin",
+                                        "originType": "STREAM",
+                                        "key": "originId",
+                                        "value": "SSSKg4EXKZ111",
+                                        "exact": true
+                                    },
+                                    {
+                                        "type": "property",
+                                        "key": "what",
+                                        "value": "lineItem_BlendedCost",
+                                        "exact": true
+                                    }
+                                ],
+                                "ids": null,
+                                "originSourceIds": null
+                            },
+                            "leaf": true
+                        }
+                    ],
+                    "function": "groupBy",
+                    "parameters": [
+                        {
+                            "name": "Aggregation",
+                            "value": "Sum"
+                        },
+                        {
+                            "name": "Group By",
+                            "value": "{\"properties\":[\"lineItem_LineItemType\",\"lineItem_ProductCode\"]}"
+                        }
+                    ],
+                    "leaf": false
+                }
+            },
+            "alias": null,
+            "filter": null,
+            "scalarTransforms": null,
+            "calculationDelay": null,
+            "originId": "1f11979f-de3e-4d6b-81c8-2f2f4beb1111",
+            "owner": null,
+            "ownerId": "5e16d1c31edb9e000d2b49ec",
+            "excludeComposites": true,
+            "includeCubes": null,
+            "startBucketMode": false,
+            "description": null,
+            "watermarkBased": null
+        },
         "search": {
             "type": "composite",
-            "compositeId": "bcbb62cc-8112-4b04-8826-827a5d7588c9"
+            "compositeId": "61b85eab-f91e-4c42-95dc-4255795e1111"
         },
-        "correlatedEvents": null
+        "correlatedEvents": null,
+        "correlatedEventsFilters": [
+            {
+                "aggregation": {
+                    "aggregationField": "category",
+                    "resolution": "longlong",
+                    "topEventSize": 10,
+                    "maxBuckets": null
+                },
+                "filter": {
+                    "categories": [],
+                    "type": "SUPPRESS",
+                    "q": {
+                        "q": null,
+                        "expression": [
+                            {
+                                "type": "property",
+                                "key": "category",
+                                "value": "other",
+                                "exact": true
+                            },
+                            {
+                                "type": "property",
+                                "key": "Product",
+                                "value": "*",
+                                "exact": false
+                            }
+                        ],
+                        "ids": null,
+                        "originSourceIds": null
+                    }
+                },
+                "lookupTable": null,
+                "eventMetricFilter": [
+                    {
+                        "eventProperty": "Product",
+                        "metricDimension": "lineItem_ProductCode"
+                    }
+                ]
+            }
+        ],
+        "alertActions": [
+            "66a62a857e6957242786ead9"
+        ],
+        "updatePolicy": {
+            "time": 1800
+        }
     },
     "state": {
         "state": "active",
@@ -423,6 +619,11 @@ Use this API to get a single alert configuration
     }
 }
 ```
+
+<aside class="success">
+A Pro Tip:</br>
+This response includes various configuration settings, including a composite expression, conditions, event correlation and influencing metrics.
+</aside>
 
 **Request Arguments**
 

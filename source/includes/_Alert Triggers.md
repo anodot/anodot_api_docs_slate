@@ -81,6 +81,8 @@ alertConfigurationIds | string | Alert configuration ID, limit the call to fetch
                     "startTime": 1617148800,
                     "updateTime": 1617580800,
                     "endTime": 1617580800,
+                    "triggerTime": 1722161582,
+                    "acknowledgeTime": null,
                     "duration": 432000,
                     "channels": [
                         {
@@ -280,6 +282,11 @@ size | integer | You can specify the max number of triggers to return. The defau
 alertConfigurationIds | string | Alert configuration ID, limit the call to fetch triggers for a specific alert configuration
 isLeanResponse | bool | This is an optional parameter (default = true). If set to 'false' then the API will send not just the metadata on the triggers but also the metrics array based on this format  - [metrics](#metrics-array).
 
+<aside class="success">
+When metric data is not required, leave the <code>isLeanResponse</code> parameter true. The responses will include only the trigger data and will be much smaller in size.</br>
+However, if you do need the information per metric, set <code>isLeanResponse</code> to false and analyzed the complete information, including metric data.</br>
+</aside>  
+
 > Response Example:
 
 ```json
@@ -287,62 +294,24 @@ isLeanResponse | bool | This is an optional parameter (default = true). If set t
     "total": 17,
     "alerts": [
         {
-            "id": "1024925",
-            "timeScale": "1d",
-            "type": "NO_DATA",
-            "status": "OPEN",
-            "groupId": "1024925",
-            "alertConfigurationId": "f598eaae-06dd-4525-8898-1d6494dc7dc2",
-            "title": "[RISK] Drop in alerts triggered for Acme",
-            "description": "",
-            "severity": "high",
-            "startTime": 1672727153,
-            "updateTime": 1673504826,
-            "endTime": 1673504826,
-            "triggerTime": 1672899990,
-            "duration": 777673,
-            "channels": [
-                {
-                    "id": "2e92c09a-4718-4a3c-9ff0-f96c84094f9e",
-                    "type": "slackapp",
-                    "name": "productops"
-                }
-            ],
-            "subscribers": [
-                "5e5e5fcb9cebc5000d1e8655"
-            ],
-            "totalMetrics": 2,
-            "impactEligible": false,
-            "labels": [
-                {
-                    "name": "product"
-                },
-                {
-                    "name": "usage"
-                },
-                {
-                    "name": "Product Usage"
-                }
-            ]
-        },
-        {
             "id": "1047984",
             "timeScale": "1d",
             "type": "ANOMALY",
             "status": "OPEN",
             "groupId": "ae4f1c7f161442a4b5d39177c043750e",
             "alertConfigurationId": "7154c4c8-ffde-45da-979c-b33c64c9aa9b",
-            "title": "Spike in feedbacks by Tropical Thunder Corp. - Notify Uriah_Mitz and Eyal_Forshner",
-            "description": "",
+            "title": "Spike in feedbacks demo",
+            "description": "test description",
             "severity": "high",
             "startTime": 1673308800,
             "updateTime": 1673481600,
             "endTime": 1673481600,
             "triggerTime": 1673395200,
+            "acknowledgeTime": null,
             "duration": 172800,
             "channels": [
                 {
-                    "id": "318def7e-a45f-41d4-9919-7a3ad9936ca7",
+                    "id": "318def7e-a45f-41d4-9919-7a3ad9931111",
                     "type": "slackapp",
                     "name": "dataops-alerts"
                 }
@@ -353,6 +322,22 @@ isLeanResponse | bool | This is an optional parameter (default = true). If set t
             ],
             "totalMetrics": 3,
             "impactEligible": true,
+            "impact": null,
+            "alertActions": [
+                {
+                    "id": "66a62a857e69572427861111",
+                    "userId": "58e5f6b3ba01b264935d1111",
+                    "actionType": "demo_LINK",
+                    "actionName": "demo action",
+                    "btnName": "go to demo",
+                    "data": {
+                        "url": "https://app.anodot.com/api/v1/actions?action=KiQW3f0ZzR9lRtmU.zPiaP%2BS7ro%2FezwMZ7L8uhiaIvbJ8sWFgR9H0OcSTWdMDXLSUjoUaZ786B9zMPdmLBCJlwEGrgLObcPD649HCKMBmmDFK7KNF3plw5VBmLkMCi%2FgbxTi4G%2BUqYgsSyBXRFkCUK2HXpnbl5anXarcSJlI85DhZRs2Idt6LxtoedK5o1fOteHVa27pSXLGS4b7crReYdxNF4w%3D%3D"
+                    },
+                    "created": 1722165893,
+                    "modified": 1722165893
+                }
+            ],
+            "assignee": null,
             "labels": [
                 {
                     "name": "dataOps"
@@ -360,7 +345,11 @@ isLeanResponse | bool | This is an optional parameter (default = true). If set t
                 {
                     "name": "Risky Alerts"
                 }
-            ]
+            ],
+            "dispatchTime": 1722172215,
+            "triggerOpenMachineTime": null,
+            "closeMachineTime": null,
+            "mergedAlertIds": null
         }
     ]
 }
@@ -385,10 +374,13 @@ startTime | epoch | Time when the anomaly started
 updateTime | epoch | Time when the anomaly updated
 endTime | epoch | Time when the anomaly ended and the alert was closed.
 triggerTime | epoch | Time when the alert was triggered. Notice that you can deduce TTD (time to detect) by substracting startTime from triggerTime
+dispatchTime | epoch | Machine time when the alert was sent
+acknowledgeTime | epoch | Time of first Acknowledge of this alert trigger
 duration | integer | duration of the anomly (in seconds)
 channels | array | An array of channels to which this trigger was sent. 
 subscribers | array | An array of user IDs which are subscribed to this alert.
-totalMetrics | integer | Number of metrics in this trigger.
+totalMetrics | integer | Number of metrics in this trigger. 
+assignee | string | user id of the assigned user, null if unassgined 
 impactEligible | bool | Whether this alert supports Business Impact. You can read more about business impact [here](https://support.anodot.com/hc/en-us/articles/360016317859-Measuring-Business-Impact)
 labels | array | Array of lables which were assigned to the alert.
 
