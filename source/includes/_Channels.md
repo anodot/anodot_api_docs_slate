@@ -109,6 +109,24 @@ https://app.anodot.com/api/v2/channels/slack \
 }'
 ```
 
+> Request Example: Create an email channel in the account 
+
+```shell
+curl -X POST \
+https://app.anodot.com/api/v2/channels/email \
+-H 'Content-Type: application/json' \
+-H "Authorization: Bearer ${TOKEN}"
+-d '{
+    "channelData": {
+      "emailAddresses": [
+        "testAnodot@gmail.com"
+      ]
+    },
+    "name":"testAnodot",
+    "ungroupBasedOnMetrics": true
+}'
+```
+
 Argument | Type | Description
 ---------|------|------------
 type | string [Enum] | Type of channel to be created (appended to the request URL)<br/>Use single, lowercase word. Possible values are listed in the [channel list] (#channel-list) below.
