@@ -122,10 +122,11 @@ https://app.anodot.com/api/v2/channels/email \
         "testAnodot@gmail.com"
       ]
     },
-    "name":"testAnodot",
+    "name":"test_Anodot",
     "ungroupBasedOnMetrics": true
 }'
 ```
+
 
 Argument | Type | Description
 ---------|------|------------
