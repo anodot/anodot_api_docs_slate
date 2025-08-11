@@ -105,6 +105,11 @@ Use this API to retrieve the alert IDs that are used to delete, edit, pause/resu
           "duration": 86400
         },
         {
+          "type": "impact",
+          "id": "82be-a4e8151234",
+          "impact": 10000
+        },
+        {
           "type": "direction",
           "id": "82be-a4e81598765",
           "direction": "up"
@@ -238,6 +243,10 @@ curl -X POST \
     {
         "type": "direction",
         "direction": "both"
+    },
+    {
+        "type": "impact",
+        "impact": 10000
     },
     {
         "type": "volume",
@@ -388,6 +397,11 @@ Use this API to get a single alert configuration
                 "type": "duration",
                 "id": "77e3-a6e0038dfccd",
                 "duration": 86400
+            },
+            {
+                "type": "impact",
+                "id": "82be-a4e8151234",
+                "impact": 10000
             },
             {
                 "type": "influencing",
